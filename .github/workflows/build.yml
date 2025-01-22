@@ -24,6 +24,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Install FontForge
+        run: sudo apt-get install fontforge
+
       - name: Build
         run: 'pnpm build:webfont'
 
