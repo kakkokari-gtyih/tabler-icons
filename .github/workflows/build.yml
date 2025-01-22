@@ -51,8 +51,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: wf-dist
+          fetch-depth: 0
 
       - name: Tag on Dist Branch
         run: |
-          git tag v$(git log --oneline | wc -l)
+          git tag v$(jq ".version |= sub(\"^(?<a>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)(-.*)?$\"; \"\(.a)-mi.$(git log --oneline | wc -l)+$(git rev-parse --short HEAD)\") | .version" package.json)
           git push origin wf-dist --tags
