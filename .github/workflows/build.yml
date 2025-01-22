@@ -47,8 +47,12 @@ jobs:
           FOLDER: packages/icons-webfont
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: '[Tag] Chekout'
+        uses: actions/checkout@v4
+        with:
+          ref: wf-dist
+
       - name: Tag on Dist Branch
         run: |
-          git checkout wf-dist
           git tag v$(git log --oneline | wc -l)
           git push origin wf-dist --tags
