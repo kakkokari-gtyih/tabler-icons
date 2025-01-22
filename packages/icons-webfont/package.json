@@ -46,6 +46,7 @@
     "web"
   ],
   "devDependencies": {
+    "promise-queue": "^2.2.5",
     "sass": "^1.71.1",
     "svg2ttf": "^6.0.3",
     "svgicons2svgfont": "^15.0.0",
