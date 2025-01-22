@@ -9,26 +9,32 @@ import Queue from 'promise-queue'
 
 const DIR = getPackageDir('icons-webfont')
 
+const strokes = {
+  200: 1,
+  300: 1.5,
+  400: 2,
+}
+
 const buildOutline = async () => {
   let filesList = {}
   const icons = getAllIcons(true)
 
   const compileOptions = getCompileOptions()
 
-  await asyncForEach(Object.entries(icons), async ([type, icons]) => {
-    fs.mkdirSync(resolve(DIR, `icons-outlined/${type}`), { recursive: true })
-    filesList[type] = []
+  for (const strokeName in strokes) {
+    const stroke = strokes[strokeName]
 
-    const pqueue = new Queue(32)
-    const promises = icons.map((icon) => {
-      return pqueue.add(async () => {
-        let { name, content, unicode } = icon;
+    await asyncForEach(Object.entries(icons), async ([type, icons]) => {
+      fs.mkdirSync(resolve(DIR, `icons-outlined/${strokeName}/${type}`), { recursive: true })
+      filesList[type] = []
+
+      await asyncForEach(icons, async function ({ name, content, unicode }) {
         console.log(type, name);
 
         if (compileOptions.includeIcons.length === 0 || compileOptions.includeIcons.indexOf(name) >= 0) {
 
           if (unicode) {
-            console.log('Stroke for:', name, unicode)
+            console.log(`Stroke ${strokeName} for:`, name, unicode)
 
             let filename = `${name}.svg`
             if (unicode) {
@@ -41,16 +47,14 @@ const buildOutline = async () => {
               .replace('width="24"', 'width="1000"')
               .replace('height="24"', 'height="1000"')
 
-            if (compileOptions.strokeWidth) {
-              content = content
-                .replace('stroke-width="2"', `stroke-width="${compileOptions.strokeWidth}"`)
-            }
+            content = content
+              .replace('stroke-width="2"', `stroke-width="${stroke}"`)
 
             const cachedFilename = `u${unicode.toUpperCase()}-${name}.svg`;
 
-            if (unicode && fs.existsSync(resolve(DIR, `icons-outlined/${type}/${cachedFilename}`))) {
+            if (unicode && fs.existsSync(resolve(DIR, `icons-outlined/${strokeName}/${type}/${cachedFilename}`))) {
               // Get content
-              let cachedContent = fs.readFileSync(resolve(DIR, `icons-outlined/${type}/${cachedFilename}`), 'utf-8')
+              let cachedContent = fs.readFileSync(resolve(DIR, `icons-outlined/${strokeName}/${type}/${cachedFilename}`), 'utf-8')
 
               // Get hash
               let cachedHash = '';
@@ -75,22 +79,22 @@ const buildOutline = async () => {
               color: 'black'
             }).then(outlined => {
               // Save file
-              fs.writeFileSync(resolve(DIR, `icons-outlined/${type}/${filename}`), outlined, 'utf-8')
+              fs.writeFileSync(resolve(DIR, `icons-outlined/${strokeName}/${type}/${filename}`), outlined, 'utf-8')
 
               // Fix outline
-              execSync(`fontforge -quiet -lang=py -script .build/fix-outline.py icons-outlined/${type}/${filename}`).toString()
-              execSync(`svgo icons-outlined/${type}/${filename}`).toString()
+              execSync(`fontforge -lang=py -script .build/fix-outline.py icons-outlined/${strokeName}/${type}/${filename}`).toString()
+              execSync(`svgo icons-outlined/${strokeName}/${type}/${filename}`).toString()
 
               // Add hash
               const fixedFileContent = fs
-                .readFileSync(resolve(DIR, `icons-outlined/${type}/${filename}`), 'utf-8')
+                .readFileSync(resolve(DIR, `icons-outlined/${strokeName}/${type}/${filename}`), 'utf-8')
                 .replace(/\n/g, ' ')
                 .trim(),
                 hashString = `<!--!cache:${crypto.createHash('sha1').update(fixedFileContent).digest("hex")}-->`
 
               // Save file
               fs.writeFileSync(
-                resolve(DIR, `icons-outlined/${type}/${filename}`),
+                resolve(DIR, `icons-outlined/${strokeName}/${type}/${filename}`),
                 fixedFileContent + hashString,
                 'utf-8'
               )
@@ -98,40 +102,38 @@ const buildOutline = async () => {
           }
         }
       })
-    });
-
-    await Promise.all(promises)
-  })
-
-  // Remove old files
-  await asyncForEach(Object.entries(icons), async ([type, icons]) => {
-    const existedFiles = (await glob(resolve(DIR, `icons-outlined/${type}/*.svg`))).map(file => basename(file))
-    existedFiles.forEach(file => {
-      if (filesList[type].indexOf(file) === -1) {
-        console.log('Remove:', file)
-        fs.unlinkSync(resolve(DIR, `icons-outlined/${type}/${file}`))
-      }
     })
-  })
 
-  // Copy icons from firs to all directory
-  await asyncForEach(Object.entries(icons), async ([type, icons]) => {
-    fs.mkdirSync(resolve(DIR, `icons-outlined/all`), { recursive: true })
-
-    await asyncForEach(icons, async function ({ name, unicode }) {
-      const iconName = `u${unicode.toUpperCase()}-${name}`
-
-      if (fs.existsSync(resolve(DIR, `icons-outlined/${type}/${iconName}.svg`))) {
-        // Copy file
-        console.log(`Copy ${iconName} to all directory`)
-
-        fs.copyFileSync(
-          resolve(DIR, `icons-outlined/${type}/${iconName}.svg`),
-          resolve(DIR, `icons-outlined/all/${iconName}${type !== 'outline' ? `-${type}` : ''}.svg`)
-        )
-      }
+    // Remove old files
+    await asyncForEach(Object.entries(icons), async ([type, icons]) => {
+      const existedFiles = (await glob(resolve(DIR, `icons-outlined/${strokeName}/${type}/*.svg`))).map(file => basename(file))
+      existedFiles.forEach(file => {
+        if (filesList[type].indexOf(file) === -1) {
+          console.log('Remove:', file)
+          fs.unlinkSync(resolve(DIR, `icons-outlined/${strokeName}/${type}/${file}`))
+        }
+      })
     })
-  })
+
+    // Copy icons from firs to all directory
+    await asyncForEach(Object.entries(icons), async ([type, icons]) => {
+      fs.mkdirSync(resolve(DIR, `icons-outlined/${strokeName}/all`), { recursive: true })
+
+      await asyncForEach(icons, async function ({ name, unicode }) {
+        const iconName = `u${unicode.toUpperCase()}-${name}`
+
+        if (fs.existsSync(resolve(DIR, `icons-outlined/${strokeName}/${type}/${iconName}.svg`))) {
+          // Copy file
+          console.log(`Copy ${iconName} to all directory`)
+
+          fs.copyFileSync(
+            resolve(DIR, `icons-outlined/${strokeName}/${type}/${iconName}.svg`),
+            resolve(DIR, `icons-outlined/${strokeName}/all/${iconName}${type !== 'outline' ? `-${type}` : ''}.svg`)
+          )
+        }
+      })
+    })
+  }
 
   console.log('Done')
 }
