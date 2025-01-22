@@ -27,6 +27,12 @@ jobs:
       - name: Install FontForge
         run: sudo apt-get install fontforge
 
+      - name: Cache Icons
+        uses: actions/cache@v4
+        with:
+          path: packages/icons-webfont/icons-outlined
+          key: ${{ runner.os }}-icons-outlined
+
       - name: Build
         run: 'pnpm build:webfont'
 
