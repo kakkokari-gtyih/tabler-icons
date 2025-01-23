@@ -73,8 +73,8 @@ jobs:
       - name: Copy Artifact to Dist Branch
         run: cp -r /tmp/icons-webfont/* .
 
-      - name: Check Directory
-        run: ls -la
+      - name: Delete gitignore
+        run: rm .gitignore
 
       - name: Commit Changes
         run: |
