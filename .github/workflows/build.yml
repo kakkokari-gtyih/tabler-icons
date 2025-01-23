@@ -55,5 +55,5 @@ jobs:
 
       - name: Tag on Dist Branch
         run: |
-          git tag v$(jq ".version |= sub(\"^(?<a>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)(-.*)?$\"; \"\(.a)-mi.$(git log --oneline | wc -l)+$(git rev-parse --short HEAD)\") | .version" package.json)
+          git tag $(jq -r ".version |= sub(\"^(?<a>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)(-.*)?$\"; \"\(.a)-mi.$(git log --oneline | wc -l)+$(git rev-parse --short HEAD)\") | .version" package.json)
           git push origin wf-dist --tags
