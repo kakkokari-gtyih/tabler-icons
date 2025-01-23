@@ -24,13 +24,12 @@ const buildOutline = async () => {
   for (const strokeName in strokes) {
     const stroke = strokes[strokeName]
 
-    const queue = new Queue(32)
-
-    const promises = Object.entries(icons).map(([type, icons]) => queue.add(async () => {
+    await asyncForEach(Object.entries(icons), async ([type, icons]) => {
       fs.mkdirSync(resolve(DIR, `icons-outlined/${strokeName}/${type}`), { recursive: true })
       filesList[type] = []
+      const queue = new Queue(32)
 
-      await asyncForEach(icons, async function ({ name, content, unicode }) {
+      const promises = icons.map(({ name, content, unicode }) => queue.add(async function () {
         console.log(type, name);
 
         if (compileOptions.includeIcons.length === 0 || compileOptions.includeIcons.indexOf(name) >= 0) {
@@ -103,10 +102,10 @@ const buildOutline = async () => {
             }).catch(error => console.log(error))
           }
         }
-      })
-    }))
+      }))
 
-    await Promise.all(promises)
+      await Promise.all(promises)
+    })
 
     // Remove old files
     await asyncForEach(Object.entries(icons), async ([type, icons]) => {
