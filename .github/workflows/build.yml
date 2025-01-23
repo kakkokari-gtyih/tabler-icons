@@ -59,6 +59,8 @@ jobs:
 
       - name: Checkout Dist Branch
         run: |
+          git reset --hard
+          git clean -fd
           git checkout -b wf-dist
           git pull origin wf-dist
 
