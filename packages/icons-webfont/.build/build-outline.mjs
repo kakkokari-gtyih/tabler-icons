@@ -24,7 +24,9 @@ const buildOutline = async () => {
   for (const strokeName in strokes) {
     const stroke = strokes[strokeName]
 
-    await asyncForEach(Object.entries(icons), async ([type, icons]) => {
+    const queue = new Queue(32)
+
+    const promises = Object.entries(icons).map(queue.add(async ([type, icons]) => {
       fs.mkdirSync(resolve(DIR, `icons-outlined/${strokeName}/${type}`), { recursive: true })
       filesList[type] = []
 
@@ -102,7 +104,9 @@ const buildOutline = async () => {
           }
         }
       })
-    })
+    }))
+
+    await Promise.all(promises)
 
     // Remove old files
     await asyncForEach(Object.entries(icons), async ([type, icons]) => {
