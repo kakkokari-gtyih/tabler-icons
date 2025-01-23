@@ -42,7 +42,7 @@ jobs:
       - name: Override Version
         run: |
           cd packages/icons-webfont
-          jq ".version |= ${{ steps.version.outputs.version }}" package.json > package.json.tmp
+          jq ".version |= \"${{ steps.version.outputs.version }}\"" package.json > package.json.tmp
           mv package.json.tmp package.json
 
       - name: Build
