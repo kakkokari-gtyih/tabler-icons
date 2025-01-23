@@ -37,7 +37,7 @@ jobs:
 
       - name: Get Version
         id: version
-        run: echo "version=$(jq -r \".version |= sub(\"^(?<a>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)(-.*)?$\"; \"\(.a)-mi.$(git log --oneline | wc -l)+$(git rev-parse --short HEAD)\") | .version\" package.json)" >> $GITHUB_OUTPUT
+        run: echo "version=$(jq -r ".version |= sub(\"^(?<a>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)(-.*)?$\"; \"\(.a)-mi.$(git log --oneline | wc -l)+$(git rev-parse --short HEAD)\") | .version" package.json)" >> $GITHUB_OUTPUT
 
       - name: Override Version
         run: |
