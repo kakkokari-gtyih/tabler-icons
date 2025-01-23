@@ -61,8 +61,8 @@ jobs:
         run: |
           git reset --hard
           git clean -fd
-          git checkout -b wf-dist
           git pull origin wf-dist
+          git checkout wf-dist
 
       - name: Remove Everything in Dist Branch
         run: rm -rf *
