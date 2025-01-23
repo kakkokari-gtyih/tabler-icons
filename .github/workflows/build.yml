@@ -48,6 +48,9 @@ jobs:
       - name: Build
         run: 'pnpm build:webfont'
 
+      - name: Check Directory
+        run: ls -la packages/icons-webfont/dist
+
       - name: Delete Node Modules
         run: rm -rf packages/icons-webfont/node_modules
 
