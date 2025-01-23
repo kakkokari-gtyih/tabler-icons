@@ -81,7 +81,7 @@ jobs:
         run: cp -r /tmp/icons-webfont/* .
 
       - name: Delete gitignore
-        run: rm .gitignore
+        run: rm -f .gitignore
 
       - name: Commit Changes
         run: |
