@@ -29,8 +29,9 @@ jobs:
       - name: Install FontForge
         run: sudo apt-get install fontforge
 
-      - name: Cache Icons
-        uses: actions/cache@v4
+      - name: Restore Cached Icons
+        id: restore-cached-icons
+        uses: actions/cache/restore@v4
         with:
           path: packages/icons-webfont/icons-outlined
           key: ${{ runner.os }}-icons-outlined-v2
@@ -50,6 +51,12 @@ jobs:
 
       - name: Check Directory
         run: ls -la packages/icons-webfont/dist
+
+      - name: Save Cached Icons
+        uses: actions/cache/save@v4
+        with:
+          path: packages/icons-webfont/icons-outlined
+          key: ${{ steps.restore-cached-icons.outputs.cache-primary-key }}
 
       - name: Delete Node Modules
         run: rm -rf packages/icons-webfont/node_modules
