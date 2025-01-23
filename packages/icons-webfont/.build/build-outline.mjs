@@ -26,7 +26,7 @@ const buildOutline = async () => {
 
     const queue = new Queue(32)
 
-    const promises = Object.entries(icons).map(queue.add(async ([type, icons]) => {
+    const promises = Object.entries(icons).map(([type, icons]) => queue.add(async () => {
       fs.mkdirSync(resolve(DIR, `icons-outlined/${strokeName}/${type}`), { recursive: true })
       filesList[type] = []
 
@@ -84,7 +84,7 @@ const buildOutline = async () => {
               fs.writeFileSync(resolve(DIR, `icons-outlined/${strokeName}/${type}/${filename}`), outlined, 'utf-8')
 
               // Fix outline
-              execSync(`fontforge -lang=py -script .build/fix-outline.py icons-outlined/${strokeName}/${type}/${filename}`).toString()
+              execSync(`fontforge -quiet -lang=py -script .build/fix-outline.py icons-outlined/${strokeName}/${type}/${filename}`).toString()
               execSync(`svgo icons-outlined/${strokeName}/${type}/${filename}`).toString()
 
               // Add hash
