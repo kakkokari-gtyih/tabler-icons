@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: packages/icons-webfont/icons-outlined
-          key: ${{ runner.os }}-icons-outlined
+          key: ${{ runner.os }}-icons-outlined-v2
 
       - name: Get Version
         id: version
