@@ -54,19 +54,19 @@ jobs:
       - name: Delete Node Modules
         run: rm -rf packages/icons-webfont/node_modules
 
-      - name: Deploy
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: wf-dist
-          FOLDER: packages/icons-webfont
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Copy Artifact to temp folder
+        run: cp -r packages/icons-webfont /tmp/icons-webfont
 
-      - name: '[Tag] Chekout'
-        uses: actions/checkout@v4
-        with:
-          ref: wf-dist
-          fetch-depth: 0
+      - name: Checkout Dist Branch
+        run: |
+          git checkout -b wf-dist
+          git pull origin wf-dist
+
+      - name: Remove Everything in Dist Branch
+        run: rm -rf *
+
+      - name: Copy Artifact to Dist Branch
+        run: cp -r /tmp/icons-webfont/* .
 
       - name: Tag on Dist Branch
         run: |
