@@ -57,12 +57,15 @@ jobs:
       - name: Copy Artifact to temp folder
         run: cp -r packages/icons-webfont /tmp/icons-webfont
 
-      - name: Checkout Dist Branch
+      - name: Reset Current Changes
         run: |
           git reset --hard
           git clean -fd
-          git pull origin wf-dist
-          git checkout wf-dist
+
+      - name: Checkout Dist Branch
+        uses: actions/checkout@v4
+        with:
+          ref: wf-dist
 
       - name: Remove Everything in Dist Branch
         run: rm -rf *
