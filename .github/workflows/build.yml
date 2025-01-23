@@ -33,6 +33,16 @@ jobs:
           path: packages/icons-webfont/icons-outlined
           key: ${{ runner.os }}-icons-outlined
 
+      - name: Get Version
+        id: version
+        run: echo "version=$(jq -r ".version |= sub(\"^(?<a>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)(-.*)?$\"; \"\(.a)-mi.$(git log --oneline | wc -l)+$(git rev-parse --short HEAD)\") | .version" package.json)" >> $GITHUB_OUTPUT
+
+      - name: Override Version
+        run: |
+          cd packages/icons-webfont
+          jq ".version |= ${{ steps.version.outputs.version }}" package.json > package.json.tmp
+          mv package.json.tmp package.json
+
       - name: Build
         run: 'pnpm build:webfont'
 
@@ -55,5 +65,5 @@ jobs:
 
       - name: Tag on Dist Branch
         run: |
-          git tag $(jq -r ".version |= sub(\"^(?<a>\\\\d+\\\\.\\\\d+\\\\.\\\\d+)(-.*)?$\"; \"\(.a)-mi.$(git log --oneline | wc -l)+$(git rev-parse --short HEAD)\") | .version" package.json)
+          git tag $(jq -r ".version" package.json)
           git push origin wf-dist --tags
