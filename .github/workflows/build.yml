@@ -59,7 +59,9 @@ jobs:
           key: ${{ steps.restore-cached-icons.outputs.cache-primary-key }}
 
       - name: Delete Node Modules
-        run: rm -rf packages/icons-webfont/node_modules
+        run: |
+          rm -rf packages/icons-webfont/node_modules
+          rm -rf packages/icons-webfont/icons-outlined
 
       - name: Copy Artifact to temp folder
         run: cp -r packages/icons-webfont /tmp/icons-webfont
