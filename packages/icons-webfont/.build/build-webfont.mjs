@@ -15,12 +15,6 @@ const strokes = {
   400: 2,
 }
 
-const strokes = {
-  200: 1,
-  300: 1.5,
-  400: 2,
-}
-
 const aliases = getAliases(true)
 
 fs.mkdirSync(`${DIR}/dist/fonts`, { recursive: true })
