@@ -42,6 +42,7 @@ for (const strokeName in strokes) {
       prependUnicode: true,
       formats,
       normalize: true,
+      ligatures: false,
       fontHeight,
       descent: 100,
       ascent: 900,
