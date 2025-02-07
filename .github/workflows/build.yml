@@ -13,6 +13,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Calculate icons directory hash
+        id: hash
+        run: echo "dhash=$(find ./icons -type f -print0 | xargs -0 sha256sum | sort | sha256sum | cut -f 1 -d " ")" >> $GITHUB_OUTPUT
+
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
@@ -34,7 +38,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: packages/icons-webfont/icons-outlined
-          key: ${{ runner.os }}-icons-outlined-v2
+          key: ${{ runner.os }}-icons-outlined-v3-${{ steps.hash.outputs.dhash }}
 
       - name: Get Version
         id: version
