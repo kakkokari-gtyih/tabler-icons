@@ -132,26 +132,26 @@ importers:
   packages/icons-eps:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
 
   packages/icons-pdf:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
 
   packages/icons-png:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
 
   packages/icons-preact:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.8.1
@@ -166,8 +166,8 @@ importers:
   packages/icons-react:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
     devDependencies:
       '@testing-library/react':
         specifier: ^14.2.1
@@ -191,8 +191,8 @@ importers:
   packages/icons-react-native:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
     devDependencies:
       '@testing-library/react':
         specifier: ^14.2.1
@@ -222,8 +222,8 @@ importers:
   packages/icons-solidjs:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
     devDependencies:
       '@solidjs/testing-library':
         specifier: ^0.8.6
@@ -244,14 +244,14 @@ importers:
   packages/icons-sprite:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
 
   packages/icons-svelte:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
     devDependencies:
       '@sveltejs/package':
         specifier: ^2.2.7
@@ -278,8 +278,8 @@ importers:
   packages/icons-vue:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: 3.29.0
+        specifier: 3.30.0
+        version: 3.30.0
     devDependencies:
       '@testing-library/vue':
         specifier: ^8.0.2
@@ -300,8 +300,8 @@ importers:
   packages/icons-webfont:
     dependencies:
       '@tabler/icons':
-        specifier: 3.29.0
-        version: link:../icons
+        specifier: 3.30.0
+        version: 3.30.0
     devDependencies:
       execa:
         specifier: ^9.5.2
@@ -325,8 +325,8 @@ importers:
   test/test-preact:
     dependencies:
       '@tabler/icons-preact':
-        specifier: 3.29.0
-        version: 3.29.0(preact@10.25.4)
+        specifier: 3.30.0
+        version: 3.30.0(preact@10.25.4)
       preact:
         specifier: ^10.19.6
         version: 10.25.4
@@ -338,8 +338,8 @@ importers:
   test/test-react:
     dependencies:
       '@tabler/icons-react':
-        specifier: 3.29.0
-        version: 3.29.0(react@18.2.0)
+        specifier: 3.30.0
+        version: 3.30.0(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -360,8 +360,8 @@ importers:
   test/test-svelte:
     dependencies:
       '@tabler/icons-svelte':
-        specifier: 3.29.0
-        version: 3.29.0(svelte@4.2.19)
+        specifier: 3.30.0
+        version: 3.30.0(svelte@4.2.19)
     devDependencies:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^3.0.2
@@ -382,8 +382,8 @@ importers:
   test/test-vue:
     dependencies:
       '@tabler/icons-vue':
-        specifier: 3.29.0
-        version: 3.29.0(vue@3.5.13(typescript@5.7.2))
+        specifier: 3.30.0
+        version: 3.30.0(vue@3.5.13(typescript@5.7.2))
       vue:
         specifier: ^3.4.20
         version: 3.5.13(typescript@5.7.2)
@@ -2187,28 +2187,28 @@ packages:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
 
-  '@tabler/icons-preact@3.29.0':
-    resolution: {integrity: sha512-tRmTC8Oz8IoZqlyZcQqI7MBpgk6vSCtwPj+6kUAhzYpf2uI2d39PQtwJjvnql00wyyz/qH7Al6k6I6JejVOiRA==}
+  '@tabler/icons-preact@3.30.0':
+    resolution: {integrity: sha512-jlI20rCc81BVONPCkKaEwdipbRcrYY+qPlZyHStX3J/f7NdGTPVbzetT7BQ4PQWAuxGU6G0Vy/8gjcnrT3KiIw==}
     peerDependencies:
       preact: ^10.5.13
 
-  '@tabler/icons-react@3.29.0':
-    resolution: {integrity: sha512-jaa3b3j91CplY7TPgx/Gj/e+PcOnQgYiK6c5qtp1P0ytfKM5WPc1qtXyRLE3NcYlfxS2Pcst4YGy1vUML7SjbQ==}
+  '@tabler/icons-react@3.30.0':
+    resolution: {integrity: sha512-9KZ9D1UNAyjlLkkYp2HBPHdf6lAJ2aelDqh8YYAnnmLF3xwprWKxxW8+zw5jlI0IwdfN4XFFuzqePkaw+DpIOg==}
     peerDependencies:
       react: '>= 16'
 
-  '@tabler/icons-svelte@3.29.0':
-    resolution: {integrity: sha512-rD5b8/qiw8XRyZzyh+nK8iF+MvnvgpHgYVFng8gN8bdtiLsRUY+GQDy/gnIhZpLIiEyNVFSlf7MDhUm9J/Vkwg==}
+  '@tabler/icons-svelte@3.30.0':
+    resolution: {integrity: sha512-zTvPHoM1srGGZUi+JrGlRQNmOsNJY3Ss1PQSjecN0x9bsW3E7ZDLEPE6MDYMi/1ElWECmVqqZtNouszotcz0SA==}
     peerDependencies:
       svelte: '>=3 <6 || >=5.0.0-next.0'
 
-  '@tabler/icons-vue@3.29.0':
-    resolution: {integrity: sha512-W4ErqWC+OsWudD7NegB8k8uAbTZv7y35jOfRJ2Rjh81/WxktAHEz2fwL8BZL+XDU7zisDSFnmjfPXjizGV1NpA==}
+  '@tabler/icons-vue@3.30.0':
+    resolution: {integrity: sha512-n+lJQVx1Z9doh1r4K9NQfe2MIoUzxW6lzVLyZDoydFb8zfKn872ztfc+BR0OfCyCYf1of4Gxv3TIPC1VuFBu4Q==}
     peerDependencies:
       vue: '>=3.0.1'
 
-  '@tabler/icons@3.29.0':
-    resolution: {integrity: sha512-VWNINymdmhay3MDvWVREmRwuWLSrX3YiInKvs5L4AHRF4bAfJabLlEReE0BW/XFsBt22ff8/C8Eam/LXlF97mA==}
+  '@tabler/icons@3.30.0':
+    resolution: {integrity: sha512-c8OKLM48l00u9TFbh2qhSODMONIzML8ajtCyq95rW8vzkWcBrKRPM61tdkThz2j4kd5u17srPGIjqdeRUZdfdw==}
 
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
@@ -9701,27 +9701,27 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
-  '@tabler/icons-preact@3.29.0(preact@10.25.4)':
+  '@tabler/icons-preact@3.30.0(preact@10.25.4)':
     dependencies:
-      '@tabler/icons': 3.29.0
+      '@tabler/icons': 3.30.0
       preact: 10.25.4
 
-  '@tabler/icons-react@3.29.0(react@18.2.0)':
+  '@tabler/icons-react@3.30.0(react@18.2.0)':
     dependencies:
-      '@tabler/icons': 3.29.0
+      '@tabler/icons': 3.30.0
       react: 18.2.0
 
-  '@tabler/icons-svelte@3.29.0(svelte@4.2.19)':
+  '@tabler/icons-svelte@3.30.0(svelte@4.2.19)':
     dependencies:
-      '@tabler/icons': 3.29.0
+      '@tabler/icons': 3.30.0
       svelte: 4.2.19
 
-  '@tabler/icons-vue@3.29.0(vue@3.5.13(typescript@5.7.2))':
+  '@tabler/icons-vue@3.30.0(vue@3.5.13(typescript@5.7.2))':
     dependencies:
-      '@tabler/icons': 3.29.0
+      '@tabler/icons': 3.30.0
       vue: 3.5.13(typescript@5.7.2)
 
-  '@tabler/icons@3.29.0': {}
+  '@tabler/icons@3.30.0': {}
 
   '@testing-library/dom@10.4.0':
     dependencies:
