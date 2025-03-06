@@ -1,3 +1,15 @@
+This repository was intended to be an early fix for the `@tabler/icons-webfont` problem, which has been resolved and this repository was archived on March 6, 2025.
+
+For more information, visit
+
+- https://github.com/misskey-dev/misskey/issues/10371
+- https://github.com/misskey-dev/misskey/issues/14364
+- https://github.com/misskey-dev/misskey/pull/15332
+- https://github.com/misskey-dev/misskey/pull/15608
+- https://github.com/tabler/tabler-icons/pull/1312
+
+---
+
 # Tabler Icons
 
 <p align="center">
